@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { VacationCardComponent } from './vacation-card/vacation-card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
+import { LeadershipBoardComponent } from './leadership-board/leadership-board.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    VacationCardComponent
+    VacationCardComponent,
+    LeadershipBoardComponent
   ],
   imports: [
     BrowserModule,
