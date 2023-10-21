@@ -4,16 +4,22 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgApexchartsModule } from 'ng-apexcharts';
+import { VacationCardComponent } from './vacation-card/vacation-card.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatCardModule} from '@angular/material/card';
+import { LeadershipBoardComponent } from './leadership-board/leadership-board.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    VacationCardComponent,
+    LeadershipBoardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgApexchartsModule
+    BrowserAnimationsModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
