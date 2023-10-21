@@ -22,9 +22,9 @@ import { LeadershipBoardComponent } from './leadership-board/leadership-board.co
     BrowserModule,
     AppRoutingModule,
     NgApexchartsModule,
-    HttpClientModule
+    HttpClientModule,
     BrowserAnimationsModule,
-    MatCardModule
+    MatCardModule,
   ],
   providers: [PebraApiService],
   bootstrap: [AppComponent]

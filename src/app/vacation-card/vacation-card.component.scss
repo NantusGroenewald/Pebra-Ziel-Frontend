@@ -1,12 +1,26 @@
-mat-card {
-width: 55%;
-height: 40em;
-background-color: #dfeff2;
+.mat-parent {
+  margin-top: 5em;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
-.mat-parent{
-    margin-top: 5em;
-    align-items: center;
+mat-card {
+  width: 55%;
+  height: 40em;
+  background-color: #dfeff2;
+  padding: 1rem;
+  mat-card-header{
     display: flex;
     justify-content: center;
+    align-self: center;
+    text-align: center;
+    mat-card-title{
+      font-size: 3rem;
+      padding-bottom: 1rem;
+    }
+    mat-card-subtitle{
+      font-size: 2rem;
+    }
+  }
 }
