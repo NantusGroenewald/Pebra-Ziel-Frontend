@@ -1,5 +1,5 @@
 .mat-parent {
-  margin-top: 5em;
+  padding: 5rem 0rem;
   align-items: center;
   display: flex;
   justify-content: center;
@@ -7,7 +7,7 @@
 
 mat-card {
   width: 55%;
-  height: 40em;
+  height: fit-content;
   background-color: #dfeff2;
   padding: 1rem;
   mat-card-header{
@@ -18,9 +18,28 @@ mat-card {
     mat-card-title{
       font-size: 3rem;
       padding-bottom: 1rem;
+      color: #2e3233;
     }
     mat-card-subtitle{
       font-size: 2rem;
+      color: #2e3233;
     }
   }
+}
+
+.progressbar{
+  margin: 1rem 0rem;
+}
+
+
+.mat-mdc-progress-bar {
+  --mdc-linear-progress-active-indicator-color: #5ca9f5;
+}
+
+.mdc-linear-progress__buffer-bar {
+  --mdc-linear-progress-active-indicator-color: #5ca9f5;
+}
+
+.mat-mdc-progress-bar .mdc-linear-progress__buffer-bar {
+  --mdc-linear-progress-active-indicator-color: #5ca9f5;
 }

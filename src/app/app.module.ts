@@ -13,6 +13,8 @@ import {MatCardModule} from '@angular/material/card';
 import { LeadershipBoardComponent } from './leadership-board/leadership-board.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatIconModule } from '@angular/material/icon';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     BrowserAnimationsModule,
     MatCardModule,
     MatTableModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatIconModule
   ],
   providers: [PebraApiService],
   bootstrap: [AppComponent]
