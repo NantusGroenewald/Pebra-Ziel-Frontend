@@ -5,17 +5,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { PebraApiService } from './pebra-api.service';
+import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [PebraApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
