@@ -7,7 +7,8 @@ import { VacationCardComponent } from './vacation-card/vacation-card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
 import { LeadershipBoardComponent } from './leadership-board/leadership-board.component';
-
+import {MatTableModule} from '@angular/material/table';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +19,9 @@ import { LeadershipBoardComponent } from './leadership-board/leadership-board.co
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatCardModule
+    MatCardModule,
+    MatTableModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
