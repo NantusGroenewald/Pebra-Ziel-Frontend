@@ -1,20 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import {
-  ChartComponent,
-  ApexAxisChartSeries,
-  ApexChart,
-  ApexXAxis,
-  ApexTitleSubtitle
-} from "ng-apexcharts";
+
 import { PebraApiService } from './pebra-api.service';
 import { Observable, switchMap, concat, of, takeUntil, map, Subject, BehaviorSubject } from 'rxjs';
 
-export type ChartOptions = {
-  series: ApexAxisChartSeries;
-  chart: ApexChart;
-  xaxis: ApexXAxis;
-  title: ApexTitleSubtitle;
-};
 
 @Component({
   selector: 'app-root',
