@@ -1,5 +1,4 @@
 export interface Quote {
-    
     id: string;
     dateCreated: Date;
     premium: number;

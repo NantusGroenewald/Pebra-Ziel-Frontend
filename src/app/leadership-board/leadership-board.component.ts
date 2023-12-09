@@ -1,57 +1,47 @@
-import { Component, OnInit  } from '@angular/core';
-import {MatTableModule} from '@angular/material/table';
-import *  as signalR from '@microsoft/signalr';
-import { HttpClient } from '@angular/common/http';
-import { Quote } from './quote.interface';
+import {Component, OnDestroy} from '@angular/core';
+import {SignalRService} from '../../shared/services/signal-r.service';
+import {HttpService} from '../../shared/services/http.service';
+import {SnackbarService} from '../../shared/services/snackbar.service';
 
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Nantus', weight: 413},
-  {position: 2, name: 'Hanroe', weight: 250},
-  {position: 3, name: 'Ian Joubert', weight: 178.65},
-  {position: 4, name: 'Casparus', weight: 14.2},
-  {position: 5, name: 'Tia', weight: 14.2},];
 @Component({
   selector: 'app-leadership-board',
   templateUrl: './leadership-board.component.html',
   styleUrls: ['./leadership-board.component.scss']
 })
-export class LeadershipBoardComponent implements OnInit{
-  private _hubConnection!: signalR.HubConnection;
-  public quotes: Quote[] = [];
+export class LeadershipBoardComponent implements OnDestroy {
+  public value: string = '';
 
-  constructor(private _httpClient: HttpClient) { }
-  ngOnInit(): void {
-    this.connect();
+  constructor(private _signalRService: SignalRService, private _httpService: HttpService, private _snackbarService: SnackbarService) {
+    this._signalRService.establishConnection();
   }
 
-  public onSendButtonClick(): void {
-    this._hubConnection.send('SendMessage', 'test message').then(r => { });
+  public clearQuotes(): void {
+    this._signalRService.clearQuotes();
   }
-  displayedColumns: string[] = ['Id', 'VendorName', 'Premium', 'LogoUrl'];
-  dataSource = ELEMENT_DATA;
-  subscriptionKey = '';
-  
-  private connect(): void {
-    this._hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl(`https://apim-hippo-uat.azure-api.net/hippo-core/hub/quote?subscription-key=b623def47ab04030a27feda99ecf5168`)
-      .build();
 
-    this._hubConnection.on('quoteDto', (message: Quote) => {
-      console.log(message);
-      this.quotes = [...this.quotes, message];
-    });
+  public stopConnection(): void {
+    this._signalRService.stopConnection();
+  }
 
-    this._hubConnection.start()
-      .then(() => console.log('connection started'))
-      .then(() => console.log(this._hubConnection.connectionId))
-      .catch((err) => console.log('error while establishing signalr connection: ' + err));
+  public startConnection(): void {
+    this._signalRService.manualStartConnection();
+  }
+
+  public requestTableData(): void {
+    try {
+      let obj = JSON.parse(this.value);
+
+      obj = { ...obj, connectionId: this._signalRService.connectionId };
+
+      this._httpService.createLeads(obj).subscribe();
+    } catch (error) {
+      this._snackbarService.openSnackBar('Not a valid JSON object', ['panel-error']);
+      console.error(error);
+    }
+  }
+
+  public ngOnDestroy(): void {
+    this._signalRService.stopConnection();
   }
 }
 //this._hubConnection = new signalR.HubConnectionBuilder()
@@ -71,7 +61,7 @@ export class LeadershipBoardComponent implements OnInit{
 //})
 // .withUrl('https://apim-hippo-localdev.azure-api.net',{
 //   transport: signalR.HttpTransportType.WebSockets,
-//   //headers: new signalR.MessageHeaders({ 
+//   //headers: new signalR.MessageHeaders({
 //     // 'Access-Control-Allow-Origin':'*',
 //     // 'Authorization':'authkey',
 //     // 'userid':'1'
