@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import * as signalR from '@microsoft/signalr';
-import {HubConnection} from '@microsoft/signalr';
+import {HubConnection, HubConnectionState} from '@microsoft/signalr';
 import {Quote} from '../interfaces/quote.interface';
 import {Subject} from 'rxjs';
 import {HttpService} from './http.service';
@@ -16,6 +16,7 @@ export class SignalRService {
   public readonly quotes$: Subject<Quote[]> = new Subject();
 
   public get connectionId(): string { return this._hubConnection?.connectionId ?? ''; }
+  public get connectionEstablished(): boolean { return !!this._hubConnection && this._hubConnection.state === HubConnectionState.Connected; }
 
   constructor(private _httpService: HttpService, private _snackbarService: SnackbarService) { }
 
@@ -58,6 +59,9 @@ export class SignalRService {
   }
 
   public stopConnection(): void {
-    this._hubConnection?.stop().then(() => this._snackbarService.openSnackBar('Connection closed'));
+    this._hubConnection?.stop().then(() => {
+      this._snackbarService.openSnackBar('Connection closed');
+      this.clearQuotes();
+    });
   }
 }

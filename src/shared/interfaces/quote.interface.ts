@@ -1,18 +1,20 @@
+import {ItemInterface} from './item.interface';
+
 export interface Quote {
     id: string;
     dateCreated: Date;
     premium: number;
     discountedPremium?: number;
-    vendorKey: number;
+    vendor: number;
     vendorName: string;
-    // List<QuoteItemDTO> QuoteItems:;
+    quoteItems: ItemInterface[];
     leadId: string;
-    //  QuoteStatus Status:;
     acceptQuoteUrl?: string;
     redirectUrl: string;
     synopsis: string;
     logoUrl: string;
     apiKey: string;
     acceptedDate: Date;
-    //  List<AcceptQuoteType> AcceptQuoteTypes:;
+    acceptQuoteTypes: any[];
+    status: number;
 }

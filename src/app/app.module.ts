@@ -17,6 +17,8 @@ import {InputComponent} from './leadership-board/components/input/input.componen
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import {FormsModule} from '@angular/forms';
     HttpClientModule,
     MatSnackBarModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [PebraApiService],
   bootstrap: [AppComponent]

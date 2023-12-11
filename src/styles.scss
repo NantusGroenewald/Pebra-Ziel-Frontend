@@ -2,7 +2,8 @@
 
 html, body {
   height: 100%;
-  background-image: url("./assets/SkyWallpaper.png");
+  background: url("./assets/SkyWallpaper.png") repeat-x;
+  animation: moveClouds 20s linear infinite;
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -18,5 +19,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     --mdc-snackbar-container-color: red;
     --mat-mdc-snack-bar-button-color: #fff;
     --mdc-snackbar-supporting-text-color: white;
+  }
+}
+
+@keyframes moveClouds {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 0;
   }
 }
