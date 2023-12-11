@@ -91,7 +91,9 @@ export class LeadershipBoardComponent implements OnDestroy {
 
       obj = { ...obj, connectionId: this._signalRService.connectionId };
 
-      this._httpService.createLeads(obj).subscribe(() => this._snackbarService.openSnackBar('Requesting leads, this might take some time...'));
+      this._snackbarService.openSnackBar('Requesting leads, this might take some time...');
+
+      this._httpService.createLeads(obj).subscribe();
     } catch (error) {
       this._snackbarService.openSnackBar('Not a valid JSON object', ['panel-error']);
       console.error(error);
