@@ -23,7 +23,9 @@ export class SignalRService {
   private subscribeToChanges(): void {
     this._hubConnection?.on('quoteDto', (message: Quote) => {
       console.log(message);
-      // TODO: Check if all quotes are returned from message
+
+      if (this._quotes.some(x => x.id === message.id)) return;
+
       this._quotes = [...this._quotes, message];
 
       this.quotes$.next(this._quotes);
